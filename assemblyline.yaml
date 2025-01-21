@@ -1,0 +1,26 @@
+apiVersion: vs.axis-dev.io/v1
+kind: AssemblyLine
+metadata:
+  name: approval-toast-error-test
+spec:
+  params: 
+  - name: k8sNamespace
+    type: string
+  - name: imageName
+    type: string
+  results: []
+  artifacts: []
+  stages:
+    - name: deploy-preview
+      spec:
+        params:
+          - name: k8sNamespace
+            value: $(inputs.k8sNamespace)
+          - name: imageName
+            value: $(inputs.imageName)
+        deployment:
+          app: iacs-923
+          name: dummy
+        pipeline: ogw-approve-deploy-preview         
+
+        
